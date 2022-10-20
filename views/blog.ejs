@@ -1,0 +1,48 @@
+<style>
+  .blogs-tit{
+    border-left: 2px solid rgb(251, 69, 100);
+    padding: 5px;
+    box-shadow: 2px rgb(251, 69, 100);
+
+  }
+  .blogs-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  }
+  #p{
+     color: darkgray;
+  }
+</style>
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+
+<body>
+  <%- include("../partials/navbar.ejs") %>
+
+  <div class="blogs-content">
+    <h2>All Blogs</h2>
+
+  <% if (blogs.length > 0) { %>
+    <% blogs.forEach(blog => { %>
+      <div class="blogs-tit">
+      <a class="single" href="/blogs/<%= blog._id %>">
+      <h3 class="title"><%= blog.title %></h3>
+      <p style="color: grey; font-size: small;" class="snippet"><%= blog.snippet %></p>
+   
+    </div>
+    <br>
+  
+    <% }) %>
+  <% } else { %>
+    <p>There are no blogs to display...</p>
+  <% } %>
+
+
+    
+  </div>
+
+  <%- include("../partials/footer.ejs") %>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<style>
+.details-content{
+  border: 2px solid black;
+  padding: 10px;
+
+}
+</style>
+
+
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+
+<body>
+  <%- include("../partials/navbar.ejs") %>
+
+  <div class="blogs-content">
+
+      <div class="details-content">
+        <h3 class="title"><%= blog.title %></h3>
+        <span style="color: grey; font-size:small" class="author"><%=blog.author %></span>
+        <div class="content">
+        <h5 class="body" style=" font-family:cursive"><%= blog.body %></h5>
+        </div>
+        <a style="border: 2px solid rgb(232, 41, 73);
+        border-radius: 10px;
+            padding: 2px;
+            cursor:pointer;
+            background-color: rgb(232, 41, 73);
+            color: #fff;
+        " class="delete" data-doc="<%= blog._id%>">delete</a>
+  </div>
+
+  <%- include("../partials/footer.ejs") %>
+
+  <script>
+    const trashcan = document.querySelector('a.delete');
+    trashcan.addEventListener('click',(e)=>{
+        const endpoint = `/blogs/${trashcan.dataset.doc}`;
+
+        fetch(endpoint,{
+            method:'DELETE'
+        })
+        .then((response)=>response.json())
+        .then((data)=>console.log(data))
+        .catch((err)=>console.log(err));
+
+        sethea
+    })
+  </script>
+
+</body>
+</html>
